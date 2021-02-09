@@ -20,7 +20,7 @@ while true; do
     esac
 done
 
-START_TIME=$SECONDS
+start=$(date +%s.%N)
 
 echo "====================================================="
 echo " Step 1.1. Updating system"
@@ -128,9 +128,9 @@ cmake -D CMAKE_BUILD_TYPE=RELEASE \
     -D BUILD_EXAMPLES=OFF ..
 
 echo "====================================================="
-echo " Step 3.3. Going to compile OpenCV "
-echo "  get yourself some coffee/tea/hot cocoa..."
-echo "  it will take quite some time (approx. 12.04 - )..."
+echo " Step 3.3. Going to compile OpenCV, "
+echo "  so get yourself some coffee/tea/hot cocoa..."
+echo "  It will take quite some time (approx. one hour)..."
 echo "====================================================="
 
 make -j$(nproc)
@@ -161,22 +161,28 @@ echo " Step 4.2. Resetting swap file process... "
 echo "====================================================="
 
 sudo systemctl restart dphys-swapfile
+echo "Done."
 
 echo "====================================================="
 echo " Step 4.3. Finished OpenCV install... "
 echo "====================================================="
+echo
 
-ELAPSED_TIME_MIN=$(($SECONDS - $START_TIME)) / 60
-echo " It took your Pi $ELAPSED_TIME_MIN minutes to run this script :)"
+duration=$(echo "$(date +%s.%N) - $start" | bc)
+execution_time=`printf "%.2f seconds" $duration`
+
+echo " It took your Pi $execution_time seconds to run this script :)"
 echo " We have finished the installation of OpenCV."
 echo
 
 echo "====================================================="
 echo " Step 5. Installing pip cv2 (last step)"
 echo "====================================================="
+echo
 
 pip3 install opencv-python
 
+echo
 echo " You can now test Python 3 and OpenCV using following lines:"
 echo " import cv2"
 echo " cv2.__version__"
