@@ -23,13 +23,13 @@ done
 START_TIME=$SECONDS
 
 echo "====================================================="
-echo "Step 1.1. Updating system"
+echo " Step 1.1. Updating system"
 echo "====================================================="
 echo
 sudo apt update -y
 
 echo "====================================================="
-echo "Step 1.2. Upgrading system"
+echo " Step 1.2. Upgrading system"
 echo "====================================================="
 echo
 sudo apt upgrade -y
@@ -52,6 +52,7 @@ echo "====================================================="
 echo
 sudo apt install libavcodec-dev libavformat-dev libswscale-dev libv4l-dev libxvidcore-dev libx264-dev libdc1394-22-dev libgstreamer-plugins-base1.0-dev libgstreamer1.0-dev -y
 
+echo "====================================================="
 echo " Step 1.6. Installing QT interface tools for OpenCV"
 echo "====================================================="
 echo
@@ -77,7 +78,7 @@ sudo apt install python3-dev python3-pip python3-numpy -y
 
 echo "====================================================="
 echo " Step 2.1. Preparing for compilation,"
-echo "         making swap file larger (100Mb -> 2Gb)"
+echo "           making swap file larger (100Mb -> 2Gb)"
 echo "====================================================="
 
 sudo mv /etc/dphys-swapfile /etc/dphys-swapfile_
@@ -94,7 +95,8 @@ sudo systemctl restart dphys-swapfile
 
 echo "====================================================="
 echo " Step 2.2. Downloading OpenCV sources from Git"
-echo "  Cloning git repos. This might take some time..."
+echo "           Cloning git repos."
+echo "           This might take some time..."
 echo "====================================================="
 
 cd ~
