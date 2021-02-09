@@ -46,13 +46,13 @@ for folder_idx, folder in enumerate(names):
     for idx, file in enumerate(files):
         file_name = BASE_DIR + folder + file
         if idx < n_train:
-            if !(os.path.isfile(BASE_DIR + "train/" + names[folder_idx])):
+            if (os.path.isfile(BASE_DIR + "train/" + names[folder_idx]) == False):
                 shutil.move(file_name, BASE_DIR + "train/" + names[folder_idx])
         elif idx < n_train + n_valid:
-            if !(os.path.isfile(BASE_DIR + "val/" + names[folder_idx])):
+            if (os.path.isfile(BASE_DIR + "val/" + names[folder_idx]) == False):
                 shutil.move(file_name, BASE_DIR + "val/" + names[folder_idx])
         else:
-            if !(os.path.isfile(BASE_DIR + "test/" + names[folder_idx])):
+            if (os.path.isfile(BASE_DIR + "test/" + names[folder_idx]) == False):
                 shutil.move(file_name, BASE_DIR + "test/" + names[folder_idx])
 
 
