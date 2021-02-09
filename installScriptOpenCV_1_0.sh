@@ -12,7 +12,7 @@ echo "School of Engineering and Automotive"
 echo ""
 echo ""
 while true; do
-    read -p "Do you really wish to install OpenCV?" yn
+    read -p "Do you really wish to install OpenCV? [Y/N] " yn
     case $yn in
         [Yy]* ) make install; break;;
         [Nn]* ) exit;;
