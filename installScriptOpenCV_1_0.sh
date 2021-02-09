@@ -176,11 +176,28 @@ echo " We have finished the installation of OpenCV."
 echo
 
 echo "====================================================="
-echo " Step 5. Installing pip cv2 (last step)"
+echo " Step 5. Installing pip3 modules... (final step)"
 echo "====================================================="
 echo
 
+start=$(date +%s.%N)
+
+echo "OpenCV Python module"
 pip3 install opencv-python
+
+echo "Pandas Python module"
+pip3 install pandas
+
+echo "Seaborn Python module"
+pip3 install seaborn
+
+echo "Tensorflow Python module"
+pip3 install tensorflow
+
+duration=$(echo "$(date +%s.%N) - $start" | bc)
+execution_time=`printf "%.2f seconds" $duration`
+echo
+echo " It took another $execution_time seconds install additional Python 3 modules..."
 
 echo
 echo " You can now test Python 3 and OpenCV using following lines:"
