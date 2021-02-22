@@ -187,27 +187,32 @@ echo
 start=$(date +%s.%N)
 
 echo "OpenCV Python module"
-python3 -m install opencv-python --no-warn-script-location
+python3 -m pip install opencv-python --no-warn-script-location
 
 echo "Pandas Python module"
-python3 -m install pandas --no-warn-script-location
+python3 -m pip install pandas --no-warn-script-location
 
 echo "Seaborn Python module"
-python3 -m install seaborn --no-warn-script-location
+python3 -m pip install seaborn --no-warn-script-location
 
 echo "Tensorflow Python module"
-python3 -m install --user --upgrade tensorflow>=2.2 --no-warn-script-location
+python3 -m pip install --user --upgrade tensorflow>=2.2 --no-warn-script-location
 #python3 -m install --ignore-installed --upgrade tensorflow --no-warn-script-location
-python3 -m install --user --upgrade tensorflow-tensorboard --no-warn-script-location
-python3 -m install tensorflow_datasets --no-warn-script-location
+python3 -m pip install --user --upgrade tensorflow-tensorboard --no-warn-script-location
+python3 -m pip install tensorflow_datasets --no-warn-script-location
+
+wget https://github.com/lhelontra/tensorflow-on-arm/releases/download/v2.4.0/tensorflow-2.4.0-cp37-none-linux_armv7l.whl
+python3 -m pip install tensorflow-2.4.0-cp37-none-linux_armv7l.whl
 
 echo "Keras Python module"
-python3 -m install keras --no-warn-script-location
-python3 -m install --user keras==2.3.1 --no-warn-script-location
+python3 -m pip install keras --no-warn-script-location
+python3 -m pip install --user keras==2.3.1 --no-warn-script-location
 
 echo "Final packages for Python"
 sudo apt-get install -y openmpi-bin libopenmpi-dev
 sudo apt-get install -y libatlas-base-dev
+python3 -m pip install albumentations
+
 
 duration=$(echo "$(date +%s.%N) - $start" | bc)
 execution_time=`printf "%.2f seconds" $duration`
