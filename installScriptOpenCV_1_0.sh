@@ -6,11 +6,15 @@
 
 echo
 echo "Install script 1/2 for OpenCV on Raspberry Pi 4(00)+"
-echo "Version 1.0 - Feb 2021"
+echo "Version 1.1 - Feb 2021"
 echo "Johan Korten - HAN University of Applied Sciences"
 echo "School of Engineering and Automotive"
 echo ""
 echo ""
+if [ "$EUID" -ne 0 ]
+  then echo "Please run as root"
+  exit
+fi
 while true; do
     read -p "Do you really wish to install OpenCV? [Y/N] " yn
     case $yn in
@@ -176,23 +180,34 @@ echo " We have finished the installation of OpenCV."
 echo
 
 echo "====================================================="
-echo " Step 5. Installing pip3 modules... (final step)"
+echo " Step 5. Installing python3 -m modules... (final step)"
 echo "====================================================="
 echo
 
 start=$(date +%s.%N)
 
 echo "OpenCV Python module"
-pip3 install opencv-python
+python3 -m install opencv-python --no-warn-script-location
 
 echo "Pandas Python module"
-pip3 install pandas
+python3 -m install pandas --no-warn-script-location
 
 echo "Seaborn Python module"
-pip3 install seaborn
+python3 -m install seaborn --no-warn-script-location
 
 echo "Tensorflow Python module"
-pip3 install tensorflow
+python3 -m install --user --upgrade tensorflow>=2.2 --no-warn-script-location
+#python3 -m install --ignore-installed --upgrade tensorflow --no-warn-script-location
+python3 -m install --user --upgrade tensorflow-tensorboard --no-warn-script-location
+python3 -m install tensorflow_datasets --no-warn-script-location
+
+echo "Keras Python module"
+python3 -m install keras --no-warn-script-location
+python3 -m install --user keras==2.3.1 --no-warn-script-location
+
+echo "Final packages for Python"
+sudo apt-get install -y openmpi-bin libopenmpi-dev
+sudo apt-get install -y libatlas-base-dev
 
 duration=$(echo "$(date +%s.%N) - $start" | bc)
 execution_time=`printf "%.2f seconds" $duration`
