@@ -2,7 +2,7 @@ import cv2
 import sys
 
 # Changes for Python3 J.A. Korten - 2021
-# Based on: https://static.realpython.com/guides/python-opencv-examples.pdf
+# Based https://static.realpython.com/guides/python-opencv-examples.pdf
 
 
 # Get user supplied values
@@ -19,10 +19,10 @@ gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 # Detect faces in the image
 faces = faceCascade.detectMultiScale(
     gray,
-    scaleFactor=1.2,
+    scaleFactor=1.15,
     minNeighbors=5,
-    minSize=(20, 20)
-    #flags = cv2.CV_HAAR_SCALE_IMAGE
+    minSize=(20, 20),
+    flags = cv2.CASCADE_SCALE_IMAGE
 )
 
 print ("Found "+str(len(faces))+" faces!")
