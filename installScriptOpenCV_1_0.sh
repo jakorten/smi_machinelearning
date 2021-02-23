@@ -217,6 +217,14 @@ sudo apt-get install -y libatlas-base-dev
 python3 -m pip install --user albumentations
 python3 -m pip install --user wget
 python3 -m pip install --user zipfile
+python3 -m pip install --user imageai
+
+wget https://files.pythonhosted.org/packages/73/44/3d5d8ef572888025666eec284e85f9243faf06ca8c12085dcff1ca9754ed/imageai-2.1.6-py3-none-any.whl
+python3 -m pip install imageai-2.1.6-py3-none-any.whl
+
+python3 -m pip uninstall opencv-python-headless
+
+
 
 
 duration=$(echo "$(date +%s.%N) - $start" | bc)
